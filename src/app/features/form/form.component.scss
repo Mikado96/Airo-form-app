@@ -147,7 +147,6 @@
     font-style: italic;
   }
   
-  // Form Actions
   .form-actions {
     display: flex;
     gap: 1rem;
@@ -180,7 +179,7 @@
   }
   
   .btn-secondary {
-    background-color: #6c757d;
+    background-color: var(--info-color);
     color: white;
     
     &:hover:not(:disabled) {
@@ -188,7 +187,6 @@
     }
   }
   
-  // Responsive Design
   @media (max-width: 768px) {
     .form-container {
       padding: 0.5rem;
