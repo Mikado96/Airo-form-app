@@ -1,0 +1,93 @@
+<div class="results-container">
+  <div class="results-card">
+    <header class="results-header">
+      <h1 class="results-title">Form Submission Results</h1>
+      <div class="results-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="onBackToForm()">
+          Back to Form
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-primary"
+          (click)="onDownloadData()"
+          [disabled]="!hasFormData()">
+          Download Data
+        </button>
+      </div>
+    </header>
+
+    @if (formData(); as data) {
+      <section class="form-data-section">
+        <h2 class="section-title">Submitted Form Data</h2>
+        <div class="data-grid">
+          <div class="data-item">
+            <span class="data-label">First Name:</span>
+            <span class="data-value">{{ data.firstName }}</span>
+          </div>
+          <div class="data-item">
+            <span class="data-label">Last Name:</span>
+            <span class="data-value">{{ data.lastName }}</span>
+          </div>
+          <div class="data-item">
+            <span class="data-label">Email:</span>
+            <span class="data-value">{{ data.email }}</span>
+          </div>
+          <div class="data-item">
+            <span class="data-label">Subscription:</span>
+            <span class="data-value">{{ data.subscription }}</span>
+          </div>
+          <div class="data-item">
+            <span class="data-label">CSV File:</span>
+            <span class="data-value">{{ data.csvFile.name }}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="csv-data-section">
+        <h2 class="section-title">CSV File Contents</h2>
+        
+        @if (csvError()) {
+          <div class="error-state" role="alert">
+            <h3>Error Loading CSV</h3>
+            <p>{{ csvError() }}</p>
+          </div>
+        }
+        
+        @if (csvData(); as data) {
+          <div class="csv-info">
+            <p class="csv-meta">
+              <strong>File:</strong> {{ data.fileName }} | 
+              <strong>Rows:</strong> {{ data.rows.length }} | 
+              <strong>Columns:</strong> {{ data.headers.length }}
+            </p>
+          </div>
+          
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  @for (header of data.headers; track header; let i = $index) {
+                    <th [class]="'col-' + i">{{ header }}</th>
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                @for (row of data.rows; track $index) {
+                  <tr>
+                    @for (cell of row; track $index) {
+                      <td>{{ cell }}</td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          
+        }
+      </section>
+    } 
+  </div>
+</div>

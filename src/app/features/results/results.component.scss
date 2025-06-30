@@ -1,0 +1,249 @@
+.results-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.results-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid #eee;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+.results-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.results-actions {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &.btn-primary {
+    background-color: #007bff;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #0056b3;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #545b62;
+    }
+  }
+}
+
+.form-data-section {
+  padding: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.section-title {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 2px solid #ddd;
+}
+
+.data-label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.data-value {
+  color: #333;
+  font-weight: 400;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+
+.csv-data-section {
+  padding: 2rem;
+}
+
+.csv-info {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  border: 2px solid #ddd;
+}
+
+.csv-meta {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 4px;
+  border: 2px solid #ddd;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  
+  th {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  tbody tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+
+    &:nth-child(even) {
+      background-color: #fafafa;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .results-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .form-data-section,
+  .csv-data-section {
+    padding: 1.5rem;
+  }
+
+  .data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .data-value {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .data-table {
+    font-size: 0.8rem;
+    
+    th, td {
+      padding: 0.5rem;
+    }
+  }
+
+  .results-actions {
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .results-title {
+    font-size: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .form-data-section,
+  .csv-data-section {
+    padding: 1rem;
+  }
+}
